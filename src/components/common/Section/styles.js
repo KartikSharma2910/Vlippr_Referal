@@ -26,7 +26,11 @@ const styles = {
   },
 
   description: {
-    fontSize: "24px",
+    fontSize: {
+      xs: "16px",
+      sm: "20px",
+      md: "24px",
+    },
     color: "white",
     fontWeight: 400,
   },

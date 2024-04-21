@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import AboutUs from "./AboutUs";
 import Banner from "./Banner";
 import Features from "./Features";
+import JoinCommunity from "./JoinCommunity";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Banner />
       <AboutUs />
       <Features />
+      <JoinCommunity />
     </Fragment>
   );
 };
