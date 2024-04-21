@@ -1,12 +1,16 @@
 import { Box } from "@mui/material";
-import React from "react";
+import styles from "./styles";
 
-const Section = ({ heading, description, children, customStyles }) => {
+const Section = ({ id, heading, description, children, customStyles }) => {
   return (
-    <Box component="section">
-      <Box>
-        <Box>{heading}</Box>
-        <Box>{description}</Box>
+    <Box
+      id={id}
+      component="section"
+      sx={{ ...styles.wrapper, ...customStyles }}
+    >
+      <Box sx={styles.headerWrapper}>
+        <Box sx={styles.heading}>{heading}</Box>
+        <Box sx={styles.description}>{description}</Box>
       </Box>
       <Box>{children}</Box>
     </Box>
