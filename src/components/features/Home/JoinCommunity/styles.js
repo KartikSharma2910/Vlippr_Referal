@@ -2,7 +2,8 @@ const styles = {
   wrapper: {
     position: "relative",
     width: "100%",
-    height: "100vh",
+    height: "min-content",
+    padding: "4% 0",
     background: "linear-gradient(135deg, #5c0042, #28002f, #4c0048)",
   },
 
@@ -14,7 +15,7 @@ const styles = {
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    color: "white", // Set text color to white
+    color: "white",
   },
 
   heading: {
@@ -26,7 +27,10 @@ const styles = {
 
   description: {
     fontSize: "14px",
-    width: "40%",
+    width: {
+      xs: "80%",
+      md: "40%",
+    },
     textAlign: "center",
   },
 
@@ -57,7 +61,10 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: "15px",
-    width: "30%",
+    width: {
+      xs: "80%",
+      md: "30%",
+    },
   },
 
   inputColor: {

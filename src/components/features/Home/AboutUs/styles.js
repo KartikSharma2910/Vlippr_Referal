@@ -1,5 +1,6 @@
 const styles = {
   wrapper: {
+    position: "relative",
     height: "100%",
     background: "radial-gradient(circle, #351F52 0%, #25143D 100%)",
   },
@@ -149,15 +150,21 @@ const styles = {
       "linear-gradient(rgba(73, 44, 255, 0.06),rgba(224, 34, 255, 0.25),rgba(0, 0, 0, 0.05))",
     border: "1px solid #FDFDFD1B",
     transition: "all 0.4s",
-    "&:hover": {
-      transform: "scale(1.1)",
-    },
+    // "&:hover": {
+    //   transform: "scale(1.1)",
+    //   animation: "shake 0.5s",
+    //   animationIterationCount: "infinite",
+    // },
   },
 
   giftCardImage: {
     width: "150px",
     backgroundColor: "transparent",
     background: "transparent",
+    "&:hover": {
+      animation: "shake 0.5s",
+      animationIterationCount: "infinite",
+    },
   },
 
   price: {
@@ -171,6 +178,14 @@ const styles = {
     cursor: "pointer",
     padding: "5px 20px",
     backgroundColor: "white",
+  },
+
+  "@keyframes shake": {
+    "0%": { transform: "translateX(0)" },
+    "25%": { transform: "translateX(-5px)" },
+    "50%": { transform: "translateX(5px)" },
+    "75%": { transform: "translateX(-3px)" },
+    "100%": { transform: "translateX(0)" },
   },
 };
 

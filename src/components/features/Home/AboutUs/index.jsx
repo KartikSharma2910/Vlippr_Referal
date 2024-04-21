@@ -3,6 +3,7 @@ import { Section } from "components/common";
 import { giftCards } from "constants/aboutUs";
 import { useState } from "react";
 import styles from "./styles";
+import "./styles.css";
 
 const AboutUs = () => {
   const [userType, setUserType] = useState("creator");
@@ -14,6 +15,21 @@ const AboutUs = () => {
       description="Unleash Your Earnings Potential!"
       customStyles={styles.wrapper}
     >
+      <div class="confetti">
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+        <div class="confetti-piece"></div>
+      </div>
       <Box sx={styles.content}>
         <Box sx={styles.leftImageWrapper}>
           <Box component="img" src="/smartphoneKid.jpeg" sx={styles.image} />
@@ -63,7 +79,13 @@ const AboutUs = () => {
         <Box sx={styles.giftCards}>
           {giftCards.map(({ image, price }, index) => {
             return (
-              <Box key={index} sx={styles.giftCardWrapper}>
+              <Box
+                key={index}
+                sx={{
+                  ...styles.giftCardWrapper,
+                  "&:hover img": { className: "shake" },
+                }}
+              >
                 <Box
                   component="img"
                   src={image}
