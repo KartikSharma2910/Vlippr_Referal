@@ -80,6 +80,7 @@ const styles = {
     zIndex: 100,
     left: 0,
     top: 20,
+    transition: "height 0.5s, width 0.5s",
   },
 
   rightImageWrapper: {
@@ -94,6 +95,7 @@ const styles = {
     borderRadius: "50%",
     right: 0,
     top: 0,
+    transition: "height 0.5s, width 0.5s",
   },
 
   leftOverlay: {
@@ -106,6 +108,7 @@ const styles = {
     zIndex: -1,
     backgroundColor: "#8F32B2",
     opacity: 0.4,
+    transition: "height 0.5s, width 0.5s",
   },
 
   rightOverlay: {
@@ -118,6 +121,7 @@ const styles = {
     zIndex: -1,
     backgroundColor: "#4b489f",
     opacity: 0.4,
+    transition: "height 0.5s, width 0.5s",
   },
 
   image: {
@@ -186,6 +190,53 @@ const styles = {
     "50%": { transform: "translateX(5px)" },
     "75%": { transform: "translateX(-3px)" },
     "100%": { transform: "translateX(0)" },
+  },
+
+  modal: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    boxShadow: 24,
+  },
+
+  modalHeader: {
+    position: "relative",
+    height: "200px",
+    color: "white",
+  },
+
+  modalImage: {
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+
+  modalUpperContainer: {
+    width: "100%",
+    height: "100%",
+    gap: "20px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    zIndex: 100,
+  },
+
+  modalHeading: {
+    textTransform: "uppercase",
+    fontWeight: 600,
+    fontSize: "24px",
+  },
+
+  modalDescription: {
+    width: "70%",
+    textAlign: "center",
+    fontSize: "12px",
+    opacity: 0.7,
   },
 };
 
