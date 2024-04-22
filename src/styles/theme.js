@@ -85,13 +85,13 @@ theme = createTheme(theme, {
           "&.MuiInputLabel-root": {
             maxWidth: "100%",
           },
-          fontSize: "14px",
+          fontSize: "10px",
+          color: "white",
           [theme.breakpoints.down("sm")]: {
             fontSize: "10px",
           },
-          color: theme.palette.custom.label,
           "&.Mui-focused": {
-            color: theme.palette.custom.label,
+            color: "white",
           },
           "& .MuiFormLabel-asterisk": {
             color: theme.palette.error.main,
@@ -110,15 +110,16 @@ theme = createTheme(theme, {
               marginTop: "18px",
             },
           },
-          height: "40px",
+          height: "36px",
           boxSizing: "border-box",
           borderRadius: 5,
           position: "relative",
-          borderWidth: 2,
+          borderWidth: 1,
+          border: "none",
           borderStyle: "solid",
-          borderColor: "#189EB8",
           color: "white",
-          fontSize: "14px",
+          borderColor: "rgba(203, 29, 246, 0.6)",
+          fontSize: "12px",
           padding: "10px 12px",
           [theme.breakpoints.down("sm")]: {
             fontSize: "12px",
@@ -128,7 +129,7 @@ theme = createTheme(theme, {
             borderColor: theme.palette.error.main,
           },
           "&.Mui-focused": {
-            borderColor: "#189EB8",
+            borderColor: "rgba(203, 29, 246, 0.6)",
           },
           "& input.Mui-disabled": {
             cursor: "not-allowed",

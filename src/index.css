@@ -27,3 +27,25 @@ section {
 .vlippr {
   color: "#11b7ff";
 }
+
+.gradient-input::before {
+  content: ""; /* Required for pseudo-element */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1; /* Position behind the input */
+  background-image: linear-gradient(
+    to right,
+    #b91bd3 0%,
+    #cb1df6 50%,
+    #a900a2 100%
+  );
+  border-radius: 5px; /* Adjust border radius as needed */
+  pointer-events: none; /* Ensure the pseudo-element doesn't interfere with input */
+}
+
+.MuiInputBase-input {
+  padding-left: 10px;
+}

@@ -1,11 +1,26 @@
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Box, Modal } from "@mui/material";
-import { Section } from "components/common";
+import { Input, Section } from "components/common";
 import { giftCards } from "constants/aboutUs";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import styles from "./styles";
 import "./styles.css";
 
 const AboutUs = () => {
+  const {
+    control,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      number: "",
+    },
+  });
+
   const [userType, setUserType] = useState("creator");
   const [open, setOpen] = useState(false);
 
@@ -138,7 +153,61 @@ const AboutUs = () => {
               </Box>
             </Box>
           </Box>
-          <Box>Form</Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "20px",
+              backgroundColor: "black",
+              padding: "20px 40px",
+            }}
+          >
+            <Input
+              name="name"
+              label="Name"
+              startIcon={
+                <Person2OutlinedIcon
+                  sx={{
+                    fontSize: "20px",
+                    opacity: 0.7,
+                  }}
+                />
+              }
+              placeholder="Enter your name"
+              errors={errors}
+              control={control}
+            />
+            <Input
+              name="number"
+              label="Number"
+              startIcon={
+                <LocalPhoneOutlinedIcon
+                  sx={{
+                    fontSize: "20px",
+                    opacity: 0.7,
+                  }}
+                />
+              }
+              errors={errors}
+              placeholder="Enter your number"
+              control={control}
+            />
+            <Input
+              name="email"
+              label="Email"
+              startIcon={
+                <EmailOutlinedIcon
+                  sx={{
+                    fontSize: "20px",
+                    opacity: 0.7,
+                  }}
+                />
+              }
+              errors={errors}
+              placeholder="Enter your email"
+              control={control}
+            />
+          </Box>
         </Box>
       </Modal>
     </Section>
