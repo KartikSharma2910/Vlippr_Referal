@@ -2,7 +2,7 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Box, Modal } from "@mui/material";
-import { Input, Section } from "components/common";
+import { Button, DropDown, Input, Section } from "components/common";
 import { giftCards } from "constants/aboutUs";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -13,20 +13,33 @@ const AboutUs = () => {
   const {
     control,
     formState: { errors },
+    clearErrors,
+    trigger,
+    reset,
   } = useForm({
     defaultValues: {
       name: "",
       email: "",
       number: "",
+      role: "",
     },
+    mode: "onBlur",
+    criteriaMode: "all",
   });
 
+  const [completed, setIsCompleted] = useState(false);
   const [userType, setUserType] = useState("creator");
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    reset();
+    setOpen(true);
+  };
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setIsCompleted(false);
+    setOpen(false);
+  };
 
   return (
     <Section
@@ -128,7 +141,13 @@ const AboutUs = () => {
                 sx={styles.giftCardImage}
               />
               <Box sx={styles.price}>{price}</Box>
-              <Box sx={styles.claimButton} onClick={() => handleOpen()}>
+              <Box
+                sx={styles.claimButton}
+                onClick={() => {
+                  clearErrors();
+                  handleOpen();
+                }}
+              >
                 Claim Now
               </Box>
             </Box>
@@ -138,6 +157,7 @@ const AboutUs = () => {
       <Modal
         open={open}
         onClose={handleClose}
+        sx={styles.mainModal}
         disableAutoFocus
         disableEnforceFocus
         disableRestoreFocus
@@ -145,69 +165,85 @@ const AboutUs = () => {
         <Box sx={styles.modal}>
           <Box sx={styles.modalHeader}>
             <Box component="img" src="/modalImage.png" sx={styles.modalImage} />
-            <Box sx={styles.modalUpperContainer}>
-              <Box sx={styles.modalHeading}>Join the Wishlist</Box>
-              <Box sx={styles.modalDescription}>
-                Join our growing waitlist of 515,131 people and get early access
-                when its out.
+            {completed ? (
+              <Box
+                sx={{
+                  ...styles.modalUpperContainer,
+                  fontSize: "20px",
+                  textAlign: "center",
+                  textTransform: "uppercase",
+                  fontWeight: 600,
+                }}
+              >
+                Hooray! You're Vlippr Wishlist Royalty!
               </Box>
+            ) : (
+              <Box sx={styles.modalUpperContainer}>
+                <Box sx={styles.modalHeading}>Join the Wishlist</Box>
+                <Box sx={styles.modalDescription}>
+                  Join our growing waitlist of 515,131 people and get early
+                  access when its out.
+                </Box>
+              </Box>
+            )}
+          </Box>
+          {!completed && (
+            <Box sx={styles.modalContainer}>
+              <Input
+                name="name"
+                label="Name"
+                startIcon={<Person2OutlinedIcon sx={styles.modalIcon} />}
+                placeholder="Enter your name"
+                rules={{ required: "This is a required field" }}
+                errors={errors}
+                control={control}
+              />
+              <Input
+                name="number"
+                label="Number"
+                startIcon={<LocalPhoneOutlinedIcon sx={styles.modalIcon} />}
+                errors={errors}
+                rules={{ required: "This is a required field" }}
+                placeholder="Enter your number"
+                control={control}
+              />
+              <Input
+                name="email"
+                label="Email"
+                startIcon={<EmailOutlinedIcon sx={styles.modalIcon} />}
+                errors={errors}
+                rules={{ required: "This is a required field" }}
+                placeholder="Enter your email"
+                control={control}
+              />
+              <DropDown
+                name="rolw"
+                label="Role"
+                startIcon={<EmailOutlinedIcon sx={styles.modalIcon} />}
+                errors={errors}
+                rules={{ required: "This is a required field" }}
+                placeholder="What best describses you"
+                options={[
+                  {
+                    label: "Subscriber",
+                    value: "subscriber",
+                  },
+                  {
+                    label: "Content Creator",
+                    value: "creator",
+                  },
+                ]}
+                control={control}
+              />
+              <Button
+                label="JOIN THE WAITLIST"
+                onClick={() =>
+                  trigger().then((res) => res && setIsCompleted(true))
+                }
+                customStyles={styles.modalButton}
+              />
             </Box>
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "20px",
-              backgroundColor: "black",
-              padding: "20px 40px",
-            }}
-          >
-            <Input
-              name="name"
-              label="Name"
-              startIcon={
-                <Person2OutlinedIcon
-                  sx={{
-                    fontSize: "20px",
-                    opacity: 0.7,
-                  }}
-                />
-              }
-              placeholder="Enter your name"
-              errors={errors}
-              control={control}
-            />
-            <Input
-              name="number"
-              label="Number"
-              startIcon={
-                <LocalPhoneOutlinedIcon
-                  sx={{
-                    fontSize: "20px",
-                    opacity: 0.7,
-                  }}
-                />
-              }
-              errors={errors}
-              placeholder="Enter your number"
-              control={control}
-            />
-            <Input
-              name="email"
-              label="Email"
-              startIcon={
-                <EmailOutlinedIcon
-                  sx={{
-                    fontSize: "20px",
-                    opacity: 0.7,
-                  }}
-                />
-              }
-              errors={errors}
-              placeholder="Enter your email"
-              control={control}
-            />
-          </Box>
+          )}
         </Box>
       </Modal>
     </Section>

@@ -15,6 +15,9 @@ const dropDownIcon = {
 const styles = {
   wrapper: {
     width: "100%",
+    "& .MuiInputBase-root": {
+      paddingLeft: "12px",
+    },
   },
 
   label: {
@@ -71,6 +74,10 @@ const styles = {
       boxSizing: "border-box",
     },
 
+    "& .MuiInputBase-root": {
+      paddingLeft: "12px",
+    },
+
     "& .MuiBox-root": {
       whiteSpace: "nowrap",
       overflow: "hidden",
@@ -83,13 +90,13 @@ const styles = {
       xs: "42px",
       sm: "56px",
     },
-    color: "black",
+    color: "white",
     p: "0 2px",
     borderBottom: "2px solid custom.connector",
   },
 
   text: {
-    color: "black",
+    color: "white",
     height: "17px",
     fontSize: {
       xs: "12px",
@@ -103,6 +110,7 @@ const styles = {
       xs: "0 12.8px",
       sm: "0 20px",
     },
+    backgroundColor: "black",
   },
 
   menu: {

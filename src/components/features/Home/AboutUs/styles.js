@@ -192,6 +192,16 @@ const styles = {
     "100%": { transform: "translateX(0)" },
   },
 
+  mainModal: {
+    "& .MuiModal-root": {
+      borderRadius: "20px",
+    },
+
+    "& .MuiModal-backdrop": {
+      backdropFilter: "blur(10px)",
+    },
+  },
+
   modal: {
     position: "absolute",
     top: "50%",
@@ -237,6 +247,25 @@ const styles = {
     textAlign: "center",
     fontSize: "12px",
     opacity: 0.7,
+  },
+
+  modalContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "20px",
+    backgroundColor: "black",
+    padding: "20px 40px",
+  },
+
+  modalIcon: {
+    fontSize: "20px",
+    opacity: 0.7,
+  },
+
+  modalButton: {
+    height: "38px",
+    borderRadius: "5px",
+    marginTop: "1rem",
   },
 };
 

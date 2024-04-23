@@ -17,6 +17,7 @@ const DropDown = ({
   customStyles,
   options,
   rules,
+  startIcon,
   fullWidth = true,
   className,
   ...rest
@@ -41,7 +42,7 @@ const DropDown = ({
       }}
       render={({ field }) => (
         <FormControl
-          sx={customStyles}
+          sx={{ ...styles.wrapper, ...customStyles }}
           fullWidth={fullWidth}
           className={className}
         >
@@ -66,7 +67,11 @@ const DropDown = ({
             fullWidth={fullWidth}
             inputProps={{ "aria-label": `${name}` }}
             input={
-              <InputBase className="gradient-input" id={`input-${name}`} />
+              <InputBase
+                startAdornment={startIcon}
+                className="gradient-input"
+                id={`input-${name}`}
+              />
             }
             MenuProps={{
               PaperProps: {
