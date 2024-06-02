@@ -2,10 +2,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import { Box, Modal } from "@mui/material";
+import axios from "axios";
 import { Button, DropDown, Input, Section } from "components/common";
 import { giftCards } from "constants/aboutUs";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import styles from "./styles";
 import "./styles.css";
 
@@ -13,6 +15,7 @@ const AboutUs = () => {
   const {
     control,
     formState: { errors },
+    getValues,
     clearErrors,
     trigger,
     reset,
@@ -39,6 +42,36 @@ const AboutUs = () => {
   const handleClose = () => {
     setIsCompleted(false);
     setOpen(false);
+  };
+
+  const handleSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("pool_id", "1");
+    formData.append("name", data.name);
+    formData.append("number", data.number);
+    formData.append("email", data.email);
+    formData.append("role", data.role);
+
+    try {
+      const response = await axios.post(
+        "https://vlippr.com/pankaj/api.php?v=1.0&platform=desktop&type=referrer",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            api_key: "80d436738cde977b773cd74dd6ae4130",
+            Cookie:
+              "PHPSESSID=10ae41995ube6hkj819rk6balk; _uads=a%3A2%3A%7Bs%3A4%3A%26quot%3Bdate%26quot%3B%3Bi%3A1716114807%3Bs%3A5%3A%26quot%3Buaid_%26quot%3B%3Ba%3A0%3A%7B%7D%7D; mode=night",
+          },
+        }
+      );
+      console.log(response.data);
+      toast.success("Yeahh! Success");
+      setIsCompleted(true);
+    } catch (error) {
+      toast.error("Something went wrong");
+      console.error("Error submitting the form", error);
+    }
   };
 
   return (
@@ -217,12 +250,12 @@ const AboutUs = () => {
                 control={control}
               />
               <DropDown
-                name="rolw"
+                name="role"
                 label="Role"
                 startIcon={<EmailOutlinedIcon sx={styles.modalIcon} />}
                 errors={errors}
                 rules={{ required: "This is a required field" }}
-                placeholder="What best describses you"
+                placeholder="What best describes you"
                 options={[
                   {
                     label: "Subscriber",
@@ -238,7 +271,16 @@ const AboutUs = () => {
               <Button
                 label="JOIN THE WAITLIST"
                 onClick={() =>
-                  trigger().then((res) => res && setIsCompleted(true))
+                  trigger().then((res) => {
+                    if (res) {
+                      handleSubmit({
+                        name: getValues("name"),
+                        number: getValues("number"),
+                        email: getValues("email"),
+                        role: getValues("role"),
+                      });
+                    }
+                  })
                 }
                 customStyles={styles.modalButton}
               />
